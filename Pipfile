@@ -10,6 +10,7 @@ name = "pypi"
 django = "*"
 "bs4" = "*"
 requests = "*"
+django-crispy-forms = "*"
 
 
 [dev-packages]
