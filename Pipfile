@@ -11,6 +11,7 @@ django = "*"
 "bs4" = "*"
 requests = "*"
 django-crispy-forms = "*"
+lxml = "*"
 
 
 [dev-packages]
