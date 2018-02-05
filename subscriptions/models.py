@@ -4,7 +4,7 @@ from django.urls import reverse
 
 
 class Websites(models.Model):
-    # app_user=models.ForeignKey('auth.User',on_delete=models.CASCADE,default='')
+    app_user=models.CharField(max_length=200,default='')
     web_name = models.CharField(max_length=200)
     web_url = models.CharField(max_length=200, default='')
 
