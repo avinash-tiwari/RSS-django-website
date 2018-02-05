@@ -1,8 +1,8 @@
 from django import forms
-from app1.models import Subscriptions
+from subscriptions.models import Websites
 
 
 class SubForm(forms.ModelForm):
     class Meta():
-        model = Subscriptions
-        fields = '__all__'
+        model = Websites
+        fields = ['web_name','web_url']
