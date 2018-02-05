@@ -8,53 +8,6 @@ from .models import Websites
 from .forms import SubForm
 # Create your views here.
 
-# class HomePageView(TemplateView):
-#     template_name='home.html'
-
-#     # -------------core functionality-----------------
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-
-# # ---------------------main logic-----------------------------------------------------
-#         subs = Websites.objects.order_by('web_name')
-#         title = []
-#         ti = []
-#         link = []
-#         li = []
-#         # getting the xml file------------------
-#         for i in subs:
-#             r = requests.get(i.web_url)
-#             r.raise_for_status()
-#             b = bs4.BeautifulSoup(r.text, 'xml')
-#             ti.append(b.find_all('title'))
-#             li.append(b.find_all('link'))
-#         # ----------------------------------------
-#         # getting the title values----------------
-#         for i in ti:
-#             temp_ti = []
-#             for j in i:
-#                 temp_ti.append(j.text)
-#             title.append(temp_ti)
-#         # -----------------------------------------
-#         # getting the link values----------------
-#         for i in li:
-#             temp_li = []
-#             for j in i:
-#                 temp_li.append(j.text)
-#             link.append(temp_li)
-#         # -----------------------------------------
-#         d = {}
-#         for k in range(len(title)):
-#             i = 0
-#             while(i < len(title[k])):
-#                 d[title[k][i]] = link[k][i + 1]
-#                 i += 1
-#         s1 = list(map(len, title))
-#         s2 = list(map(len, link))
-#         context['dict'] = d
-#         context['subs'] = subs
-#         return context
-
 def HomePageView(request):
     subs = Websites.objects.filter(app_user=str(request.user.username))
     # subs = Websites.objects.order_by('web_name')
@@ -90,9 +43,7 @@ def HomePageView(request):
         while(i < len(title[k])):
             d[title[k][i]] = link[k][i + 1]
             i += 1
-    s1 = list(map(len, title))
-    s2 = list(map(len, link))
-
+            
     return render(request,'home.html',{'dict':d,'subs':subs})
     
 
@@ -106,13 +57,6 @@ class SignUp(CreateView):
     form_class=UserCreationForm
     success_url=reverse_lazy('login')    
     template_name='signup.html'
-
-
-# class AddCreateView(CreateView):
-#     fields = '__all__'
-#     model = Websites
-#     template_name = 'add.html'
-
 
 def addSubs(request):
     if request.method == 'POST':
