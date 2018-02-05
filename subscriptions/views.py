@@ -113,3 +113,6 @@ def ReaderModeView(request,l):
             temp_ti.append(j.text)
         p.append(temp_ti)
     return render(request,'reader.html',{'paras':temp_ti,'real':l})
+
+def ContactPageView(request):
+    return render(request,'contact.html')    

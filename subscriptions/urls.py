@@ -12,7 +12,8 @@ urlpatterns = [
     # core urls
     path('list/', views.SubsListView.as_view(), name='list'),
     path('add/', views.addSubs, name='add'),
+    path('contact/', views.ContactPageView, name='contact'),
     path('reader/<path:l>/', views.ReaderModeView, name='reader'),
     path('delete/<int:pk>', views.SubsDeleteView.as_view(), name='delete'),
-
+    
 ]
