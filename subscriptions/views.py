@@ -4,8 +4,8 @@ from django.views.generic import TemplateView
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import CreateView,ListView,DeleteView
 from django.urls import reverse_lazy
-from .models import Websites
-from .forms import SubForm
+from .models import Websites,Feedback
+from .forms import SubForm,FeedbackForm
 # Create your views here.
 
 def HomePageView(request):
@@ -52,6 +52,19 @@ class AboutPageView(TemplateView):
 
 class FeedbackPageView(TemplateView):
     template_name='feedback.html'
+
+def FeedbackPageView(request):
+    if request.method == 'POST':
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            message = request.POST['message']
+
+            newObj = Feedback.objects.create(to_user="tiwari",from_user=str(
+                request.user.username), message=message)
+        return redirect('home')
+    else:
+        form = FeedbackForm()
+    return render(request, 'feedback.html', {'form': form})
 
 class SignUp(CreateView):
     form_class=UserCreationForm

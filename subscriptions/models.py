@@ -11,5 +11,11 @@ class Websites(models.Model):
     def __str__(self):
         return self.web_name
 
-    def get_absolute_url(self):
-        return reverse('home')
+class Feedback(models.Model):
+    to_user=models.CharField(max_length=200)
+    from_user=models.CharField(max_length=200)
+    message=models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.from_user+':-'+self.message[:50]
+    

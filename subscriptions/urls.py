@@ -4,7 +4,7 @@ urlpatterns = [
     # basic urls
     path('',views.HomePageView,name='home'),
     path('about/',views.AboutPageView.as_view(),name='about'),
-    path('feedback/',views.FeedbackPageView.as_view(),name='feedback'),
+    path('feedback/',views.FeedbackPageView,name='feedback'),
 
     # Signup url
     path('signup/',views.SignUp.as_view(),name='signup'),
