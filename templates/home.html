@@ -9,7 +9,7 @@
     {% if subs %} 
         {% for t,l in dict.items %}
         <p>
-            <a href="{{ l }}" target="_blank">{{t}}</a>
+            <a href="{%url 'reader' l%}" target="_blank">{{t}}</a>
         </p>
         {%endfor%} 
     {% else %}

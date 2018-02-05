@@ -83,3 +83,20 @@ class SubsDeleteView(DeleteView):
     model = Websites
     success_url = reverse_lazy('app1:list')
     template_name = 'delete.html'
+
+def ReaderModeView(request,l):
+    paragraphs=[]
+
+    r = requests.get(l)
+    r.raise_for_status()
+    b = bs4.BeautifulSoup(r.text, 'xml')
+    p=[]
+    paragraphs.append(b.find_all('p'))
+        # ----------------------------------------
+        # getting the title values----------------
+    for i in paragraphs:
+        temp_ti = []
+        for j in i:
+            temp_ti.append(j.text)
+        p.append(temp_ti)
+    return render(request,'reader.html',{'paras':p})
