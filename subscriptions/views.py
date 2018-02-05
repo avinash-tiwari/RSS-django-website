@@ -99,4 +99,4 @@ def ReaderModeView(request,l):
         for j in i:
             temp_ti.append(j.text)
         p.append(temp_ti)
-    return render(request,'reader.html',{'paras':p})
+    return render(request,'reader.html',{'paras':temp_ti})
