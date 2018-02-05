@@ -99,14 +99,11 @@ class SubsDeleteView(DeleteView):
 
 def ReaderModeView(request,l):
     paragraphs=[]
-
     r = requests.get(l)
     r.raise_for_status()
     b = bs4.BeautifulSoup(r.text, 'xml')
     p=[]
     paragraphs.append(b.find_all('p'))
-        # ----------------------------------------
-        # getting the title values----------------
     for i in paragraphs:
         temp_ti = []
         for j in i:
