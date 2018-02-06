@@ -26,11 +26,9 @@
               <a class="nav-link" href="{%url 'contact'%}"><i class="fa d-inline fa-lg fa-envelope-o"></i>Contact Us</a>
             </li>
             {%endif%}  
-              <li class="nav-item">
-                <a class="nav-link" href="{%url 'savepage'%}">Your Saved</a>
-              </li>
-        </ul>
-        {%if user.is_authenticated %}
+          </ul>
+          {%if user.is_authenticated %}
+          <a href="{%url 'savepage'%}" class="btn btn-dark">Your Saved</a>
           <a href="#" class="btn btn-dark">{{user.username}}</a>
           <a class="btn btn-dark" href="{%url 'logout'%}">Log Out</a>
         {%else%}  
