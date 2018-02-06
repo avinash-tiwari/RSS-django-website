@@ -9,40 +9,44 @@ from .forms import SubForm,FeedbackForm
 # Create your views here.
 
 def HomePageView(request):
-    subs = Websites.objects.filter(app_user=str(request.user.username))
-    # subs = Websites.objects.order_by('web_name')
-    title = []
-    ti = []
-    link = []
-    li = []
-        # getting the xml file------------------
-    for i in subs:
-        r = requests.get(i.web_url)
-        r.raise_for_status()
-        b = bs4.BeautifulSoup(r.text, 'xml')
-        ti.append(b.find_all('title'))
-        li.append(b.find_all('link'))
-        # ----------------------------------------
-        # getting the title values----------------
-    for i in ti:
-        temp_ti = []
-        for j in i:
-            temp_ti.append(j.text)
-        title.append(temp_ti)
-        # -----------------------------------------
-        # getting the link values----------------
-    for i in li:
-        temp_li = []
-        for j in i:
-            temp_li.append(j.text)
-        link.append(temp_li)
-        # -----------------------------------------
-    d = {}
-    for k in range(len(title)):
-        i = 0
-        while(i < len(title[k])):
-            d[title[k][i]] = link[k][i + 1]
-            i += 1
+    if request.user.username=="tiwari":
+        f=Feedback.objects.filter(to_user='tiwari')
+        return render(request,'home.html',{'msg':f})
+    else:
+        subs = Websites.objects.filter(app_user=str(request.user.username))
+        # subs = Websites.objects.order_by('web_name')
+        title = []
+        ti = []
+        link = []
+        li = []
+            # getting the xml file------------------
+        for i in subs:
+            r = requests.get(i.web_url)
+            r.raise_for_status()
+            b = bs4.BeautifulSoup(r.text, 'xml')
+            ti.append(b.find_all('title'))
+            li.append(b.find_all('link'))
+            # ----------------------------------------
+            # getting the title values----------------
+        for i in ti:
+            temp_ti = []
+            for j in i:
+                temp_ti.append(j.text)
+            title.append(temp_ti)
+            # -----------------------------------------
+            # getting the link values----------------
+        for i in li:
+            temp_li = []
+            for j in i:
+                temp_li.append(j.text)
+            link.append(temp_li)
+            # -----------------------------------------
+        d = {}
+        for k in range(len(title)):
+            i = 0
+            while(i < len(title[k])):
+                d[title[k][i]] = link[k][i + 1]
+                i += 1
             
     return render(request,'home.html',{'dict':d,'subs':subs})
     

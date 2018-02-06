@@ -1,26 +1,44 @@
 {%extends 'base.html'%}
 {%block content%}
-{%if user.is_authenticated%}    
-    <div class="jumbotron">
-        <h1>Welcome to the RSS Reader</h1>
-        <a href="{%url 'add'%}">Add More Subscriptions</a>
-        <a href="{%url 'list'%}">Your Subscriptions</a>
-    </div>
-    {% if subs %} 
-        {% for t,l in dict.items %}
-        <p>
-            <a href="{%url 'reader' l%}" target="_blank">{{t}}</a>
-        </p>
-        {%endfor%} 
-    {% else %}
-        <p>No Subscriptions Found
-            <a href="{%url 'add'%}">Add Here</a>
-        </p>
-    {% endif %}
-{%else%}
-    <div class="jumbotron">
-        <h3><a href="{%url 'login'%}">Log in</a> to see your Subscriptions Here</h3>
-        <h3><a href="{%url 'signup'%}">Sign Up</a> to add your subscriptions with us.</h3>
-    </div>
-{%endif%}
+    {%if user.is_authenticated%}
+        {%if user.is_superuser%}
+            <table class='table'>
+                <thead>
+                    <th>From</th>
+                    <th>Message</th>
+                </thead>
+                {%for i in msg%}
+                <tr>
+                    <td>{{i.from_user}}</td>
+                    <td>{{i.message}}</td>
+                </tr>
+                {%endfor%}
+            </table>
+        {%else%}
+            <h1>{{yo}}</h1>    
+            <div class="jumbotron">
+                <h1>Welcome to the RSS Reader</h1>
+                <a href="{%url 'add'%}">Add More Subscriptions</a>
+                <a href="{%url 'list'%}">Your Subscriptions</a>
+            </div>
+            {% if subs %} 
+                {% for t,l in dict.items %}
+                <p>
+                    <a href="{%url 'reader' l%}" target="_blank">{{t}}</a>
+                </p>
+                {%endfor%} 
+            {% else %}
+                <p>No Subscriptions Found
+                    <a href="{%url 'add'%}">Add Here</a>
+                </p>
+            {% endif %}
+        {%endif%}
+    {%else%}
+        <div class="jumbotron">
+            <h3><a href="{%url 'login'%}">Log in</a> to see your Subscriptions Here</h3>
+            <h3><a href="{%url 'signup'%}">Sign Up</a> to add your subscriptions with us.</h3>
+        </div>
+    {%endif%}
+
+
 {%endblock%}
