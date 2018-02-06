@@ -18,4 +18,10 @@ class Feedback(models.Model):
 
     def __str__(self):
         return self.from_user+':-'+self.message[:50]
-    
+
+class SaveArticles(models.Model):
+    app_user=models.CharField(max_length=200)
+    article_link=models.CharField(max_length=300)
+
+    def __str__(self):
+        return self.app_user+'-'+self.article_link

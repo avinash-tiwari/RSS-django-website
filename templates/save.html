@@ -1,0 +1,7 @@
+{%extends 'base.html' %} 
+{% block content %} 
+    <h1>Saved Articles</h1>
+    {%for i in saved%}
+        <p>{{i.article_link}}</p>
+    {%endfor%}
+{% endblock %}

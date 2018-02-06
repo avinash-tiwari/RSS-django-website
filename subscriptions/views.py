@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import CreateView,ListView,DeleteView
 from django.urls import reverse_lazy
-from .models import Websites,Feedback
+from .models import Websites,Feedback,SaveArticles
 from .forms import SubForm,FeedbackForm
 # Create your views here.
 
@@ -117,3 +117,11 @@ def ReaderModeView(request,l):
 
 def ContactPageView(request):
     return render(request,'contact.html')    
+
+def SaveArticleView(request,l):
+    b=SaveArticles.objects.create(app_user=str(request.user.username),article_link=l)
+    return render(request,'saveconfirm.html')
+
+def SavePageView(request):
+    b=SaveArticles.objects.filter(app_user=str(request.user.username))
+    return render(request,'save.html',{'saved':b})    

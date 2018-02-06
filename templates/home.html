@@ -25,6 +25,9 @@
                 {% for t,l in dict.items %}
                 <p>
                     <a href="{%url 'reader' l%}" target="_blank">{{t}}</a>
+                    <br>
+                    <a href="#" class="btn btn-primary">Mark as read</a>
+                    <a href="{%url 'save' l%}" class="btn btn-success">Save</a>
                 </p>
                 {%endfor%} 
             {% else %}
