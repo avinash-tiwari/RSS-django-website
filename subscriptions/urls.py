@@ -14,7 +14,7 @@ urlpatterns = [
     path('add/', views.addSubs, name='add'),
     path('contact/', views.ContactPageView, name='contact'),
     path('reader/<path:l>/', views.ReaderModeView, name='reader'),
-    path('save/<path:l>/', views.SaveArticleView, name='save'),
+    path('save/<path:l>/<path:n>', views.SaveArticleView, name='save'),
     path('savepage/', views.SavePageView, name='savepage'),
     path('delete/<int:pk>', views.SubsDeleteView.as_view(), name='delete'),
     

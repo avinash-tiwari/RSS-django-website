@@ -118,8 +118,8 @@ def ReaderModeView(request,l):
 def ContactPageView(request):
     return render(request,'contact.html')    
 
-def SaveArticleView(request,l):
-    b=SaveArticles.objects.create(app_user=str(request.user.username),article_link=l)
+def SaveArticleView(request,l,n):
+    b=SaveArticles.objects.create(app_user=str(request.user.username),article_link=l,article_title=n)
     return render(request,'saveconfirm.html')
 
 def SavePageView(request):

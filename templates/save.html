@@ -2,6 +2,7 @@
 {% block content %} 
     <h1>Saved Articles</h1>
     {%for i in saved%}
-        <p>{{i.article_link}}</p>
+        <a href="{{i.article_link}}" target="_blank">{{i.article_title}}</a>
+        <br>
     {%endfor%}
 {% endblock %}

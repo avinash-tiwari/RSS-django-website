@@ -22,6 +22,7 @@ class Feedback(models.Model):
 class SaveArticles(models.Model):
     app_user=models.CharField(max_length=200)
     article_link=models.CharField(max_length=300)
+    article_title=models.CharField(max_length=300,default='')
 
     def __str__(self):
         return self.app_user+'-'+self.article_link
