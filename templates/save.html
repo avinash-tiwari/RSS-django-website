@@ -2,7 +2,7 @@
 {% block content %} 
     <h1>Saved Articles</h1>
     {%for i in saved%}
-        <a href="{{i.article_link}}" target="_blank">{{i.article_title}}</a>
+        <a href="{%url 'reader' i.article_link%}" target="_blank">{{i.article_title}}</a>
         <br>
     {%endfor%}
 {% endblock %}

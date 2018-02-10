@@ -41,6 +41,17 @@ def HomePageView(request):
                 temp_li.append(j.text)
             link.append(temp_li)
             # -----------------------------------------
+            # Image fetching Code here------------------
+        # for i in link:
+        #     image=[]
+        #     for j in i:
+        #         if len(j)>1:
+        #             r = requests.get(j)
+        #             r.raise_for_status()
+        #             b = bs4.BeautifulSoup(r.text, 'xml')
+        #             image.append(b.body.p.img)
+        # print(image)            
+            # ------------------------------------------
         d = {}
         for k in range(len(title)):
             i = 0
