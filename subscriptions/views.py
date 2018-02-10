@@ -60,7 +60,7 @@ def HomePageView(request):
                 i += 1
             
     return render(request,'home.html',{'dict':d,'subs':subs})
-    
+
 
 class AboutPageView(TemplateView):
     template_name='about.html'
