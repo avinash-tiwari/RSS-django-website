@@ -117,8 +117,6 @@ def ReaderModeView(request,l):
     r = requests.get(l)
     r.raise_for_status()
     b = bs4.BeautifulSoup(r.text, 'html')
-    f=open('reader.html','w+')
-    f.write(b.prettify())
     p=[]
     paragraphs.append(b.find_all('p'))
     for i in paragraphs:
@@ -138,3 +136,7 @@ def SaveArticleView(request,l,n):
 def SavePageView(request):
     b=SaveArticles.objects.filter(app_user=str(request.user.username))
     return render(request,'save.html',{'saved':b})    
+
+def SaveRemove(request,l):
+    b=SaveArticles.objects.filter(article_link=l).delete()
+    return render(request,'removeConfirm.html')

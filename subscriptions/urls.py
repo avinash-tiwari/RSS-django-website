@@ -17,5 +17,6 @@ urlpatterns = [
     path('save/<path:l>/<path:n>', views.SaveArticleView, name='save'),#save page url
     path('savepage/', views.SavePageView, name='savepage'),#list all the saved pages
     path('delete/<int:pk>', views.SubsDeleteView.as_view(), name='delete'),#delete subscriptions
+    path('remove/<path:l>', views.SaveRemove, name='remove_save'),#remove the saved article
     
 ]

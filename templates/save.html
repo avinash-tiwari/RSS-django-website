@@ -4,5 +4,7 @@
     {%for i in saved%}
         <a href="{%url 'reader' i.article_link%}" target="_blank">{{i.article_title}}</a>
         <br>
+        <a href="{%url 'remove_save' i.article_link%}" class="btn btn-danger">Remove</a>
+        <br>
     {%endfor%}
 {% endblock %}
