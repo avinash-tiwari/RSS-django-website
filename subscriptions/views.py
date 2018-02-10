@@ -116,7 +116,9 @@ def ReaderModeView(request,l):
     paragraphs=[]
     r = requests.get(l)
     r.raise_for_status()
-    b = bs4.BeautifulSoup(r.text, 'xml')
+    b = bs4.BeautifulSoup(r.text, 'html')
+    f=open('reader.html','w+')
+    f.write(b.prettify())
     p=[]
     paragraphs.append(b.find_all('p'))
     for i in paragraphs:
