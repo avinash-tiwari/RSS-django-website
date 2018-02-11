@@ -1,8 +1,13 @@
 {%extends 'base.html' %}
-{%block title%} Reder Mode {%endblock%}
+{%block title%} Reader Mode {%endblock%}
 {%block content%}
-    <a href="{{real}}">Go To The Original Post</a>
-    {%for i in paras%}
-        <p>{{i}}</p>
-    {%endfor%}    
+    {%if isRss%}
+        <a href="{{real}}">Go To The Original Post</a>
+        {%for i in paras%}
+            <p>{{i}}</p>
+        {%endfor%}
+    {%else%}
+        <h1>Sorry, no RSS links found</h1>
+        <p>You Can delete this sub.</p>    
+    {%endif%}    
 {% endblock %}

@@ -58,7 +58,10 @@ def HomePageView(request):
             while(i < len(title[k])):
                 d[title[k][i]] = link[k][i + 1]
                 i += 1
-            
+        for t,l in d.items():
+            if len(l)<3:
+                d[t]='no link'
+
     return render(request,'home.html',{'dict':d,'subs':subs})
 
 
@@ -113,18 +116,23 @@ class SubsDeleteView(DeleteView):
     template_name = 'delete.html'
 
 def ReaderModeView(request,l):
-    paragraphs=[]
-    r = requests.get(l)
-    r.raise_for_status()
-    b = bs4.BeautifulSoup(r.text, 'html')
-    p=[]
-    paragraphs.append(b.find_all('p'))
-    for i in paragraphs:
-        temp_ti = []
-        for j in i:
-            temp_ti.append(j.text)
-        p.append(temp_ti)
-    return render(request,'reader.html',{'paras':temp_ti,'real':l})
+    if l=='no link':
+        isRss=False
+        temp_ti=[]
+    else:
+        isRss=True
+        paragraphs=[]
+        r = requests.get(l)
+        r.raise_for_status()
+        b = bs4.BeautifulSoup(r.text, 'html')
+        p=[]
+        paragraphs.append(b.find_all('p'))
+        for i in paragraphs:
+            temp_ti = []
+            for j in i:
+                temp_ti.append(j.text)
+            p.append(temp_ti)
+    return render(request,'reader.html',{'paras':temp_ti,'real':l,'isRss':isRss})
 
 def ContactPageView(request):
     return render(request,'contact.html')    
