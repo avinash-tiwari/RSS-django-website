@@ -102,7 +102,7 @@ class SubsListView(ListView):
 
 class SubsDeleteView(DeleteView):
     model = Websites
-    success_url = reverse_lazy('app1:list')
+    success_url = reverse_lazy('list')
     template_name = 'delete.html'
 
 def ReaderModeView(request,l):
