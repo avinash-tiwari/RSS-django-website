@@ -8,59 +8,51 @@ from .models import Websites,Feedback,SaveArticles
 from .forms import SubForm,FeedbackForm
 # Create your views here.
 
-def HomePageView(request,t=None):
+def HomePageView(request):
     if request.user.username=="tiwari":
         f=Feedback.objects.filter(to_user='tiwari')
         return render(request,'home.html',{'msg':f})
     else:
-        class MainDictionary(object):
-            subs = Websites.objects.filter(app_user=str(request.user.username))
+        subs = Websites.objects.filter(app_user=str(request.user.username))
             # subs = Websites.objects.order_by('web_name')
-            title = []
-            ti = []
-            link = []
-            li = []
+        title = []
+        ti = []
+        link = []
+        li = []
                     # getting the xml file------------------
-            for i in subs:
-                r = requests.get(i.web_url)
-                r.raise_for_status()
-                b = bs4.BeautifulSoup(r.text, 'xml')
-                ti.append(b.find_all('title'))
-                li.append(b.find_all('link'))
+        for i in subs:
+            r = requests.get(i.web_url)
+            r.raise_for_status()
+            b = bs4.BeautifulSoup(r.text, 'xml')
+            ti.append(b.find_all('title'))
+            li.append(b.find_all('link'))
                     # ----------------------------------------
                     # getting the title values----------------
-            for i in ti:
-                temp_ti = []
-                for j in i:
-                    temp_ti.append(j.text)
-                title.append(temp_ti)
+        for i in ti:
+            temp_ti = []
+            for j in i:
+                temp_ti.append(j.text)
+            title.append(temp_ti)
                     # -----------------------------------------
                     # getting the link values----------------
-            for i in li:
-                temp_li = []
-                for j in i:
-                    temp_li.append(j.text)
-                link.append(temp_li)
+        for i in li:
+            temp_li = []
+            for j in i:
+                temp_li.append(j.text)
+            link.append(temp_li)
                     # -----------------------------------------
-            d = {}
-            for k in range(len(title)):
-                i = 0
-                while(i < len(title[k])):
-                    d[title[k][i]] = link[k][i + 1]
-                    i += 1
+        d = {}
+        for k in range(len(title)):
+            i = 0
+            while(i < len(title[k])):
+                d[title[k][i]] = link[k][i + 1]
+                i += 1
             # Fixing the links with no rss links        
-            for t,l in d.items():
-                if len(l)<3:
-                    d[t]='no link'
+        for t,l in d.items():
+            if len(l)<3:
+                d[t]='no link'
             # -----------------------------------
-            def readed(self,t):
-                if t:
-                    MainDictionary.d.pop(t)
-                return MainDictionary.d
-            
-        obj=MainDictionary()
-        obj.readed(t)
-    return render(request,'home.html',{'dict':MainDictionary.d,'subs':MainDictionary.subs})
+    return render(request,'home.html',{'dict':d,'subs':subs})
 
 
 class AboutPageView(TemplateView):
