@@ -123,10 +123,6 @@ def ReaderModeView(request,l):
                 temp_ti.append(j.text)
             p.append(temp_ti)
     return render(request,'reader.html',{'paras':temp_ti,'real':l,'isRss':isRss})
-
-def ContactPageView(request):
-    return render(request,'contact.html')    
-
 def SaveArticleView(request,l,n):
     b=SaveArticles.objects.create(app_user=str(request.user.username),article_link=l,article_title=n)
     return render(request,'saveconfirm.html')
