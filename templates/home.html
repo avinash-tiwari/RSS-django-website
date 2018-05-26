@@ -1,5 +1,11 @@
 {%extends 'base.html'%}
 {%block content%}
+<!-- {%for i,j in SiteName.items %}
+    <button data-toggle="collapse" data-target="#demo">{{i}}</button>
+        <div id="demo" class="collapse">
+            <a href="{{j}}">{{j}}</a>
+        </div>
+{%endfor%} -->
     {%if user.is_authenticated%}
         {%if user.is_superuser%}
             <table class='table'>
@@ -20,14 +26,17 @@
                 <a href="{%url 'add'%}">Add More Subscriptions</a> |  
                 <a href="{%url 'list'%}">Your Subscriptions</a>
             </div>
-            {% if subs %} 
-                {% for t,l in dict.items %}
-                <p>
-                    <a href="{%url 'reader' l%}" target="_blank">{{t}}</a>
-                    <br>
-                    <a href="{%url 'save' l t%}" class="btn btn-success">Save</a>
-                </p>
-                {%endfor%} 
+            {% if subs %}
+                {%for n,c in dict.items%}
+                    <h4>{{n}} ({{c|length}})</h4>
+                     {% for t,l in c.items %}
+                        <p>
+                            <a href="{%url 'reader' l%}" target="_blank">{{t}}</a>
+                            <br>
+                            <a href="{%url 'save' l t%}" class="btn btn-success">Save</a>
+                        </p>
+                    {%endfor%}
+                {%endfor%}
             {% else %}
                 <p>No Subscriptions Found
                     <a href="{%url 'add'%}">Add Here</a>

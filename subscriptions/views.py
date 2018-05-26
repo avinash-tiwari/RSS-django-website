@@ -41,18 +41,27 @@ def HomePageView(request):
                 temp_li.append(j.text)
             link.append(temp_li)
                     # -----------------------------------------
-        d = {}
-        for k in range(len(title)):
-            i = 0
-            while(i < len(title[k])):
-                d[title[k][i]] = link[k][i + 1]
-                i += 1
-            # Fixing the links with no rss links        
-        for t,l in d.items():
-            if len(l)<3:
-                d[t]='no link'
-            # -----------------------------------
-    return render(request,'home.html',{'dict':d,'subs':subs})
+        # Getting the name of the subscription
+        name=[]
+        for i in range(len(title)):
+            name.append(title[i].pop(0))
+        # ------------------------------------
+        # Creating the final Dictionary of the Subs Name and their content
+        a={}
+        for i in range(len(title)):
+            de={}
+            for j in range(len(title[i])):
+                de[title[i][j]]=link[i][j+2]
+            a[name[i]]=de
+        # -----------------------------------------------------------------
+
+        # Fixing the links with no rss links        
+        for i,j in a.items():
+            for t,l in j.items():
+                if len(l)<3:
+                    j[t]='no link'
+        # -----------------------------------
+    return render(request,'home.html',{'dict':a,'subs':subs})
 
 
 class AboutPageView(TemplateView):
