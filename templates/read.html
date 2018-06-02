@@ -1,0 +1,9 @@
+{%extends 'base.html' %} {% block content %}
+    <h1>Read Articles</h1>
+    {%for i in read%}
+        <a href="{%url 'reader' i.article_link%}" target="_blank">{{i.article_title}}</a>
+        <br>
+        <a href="{%url 'remove_save' i.article_link%}" class="btn btn-danger">Mark as unread</a>
+        <br> 
+    {%endfor%} 
+{% endblock %}

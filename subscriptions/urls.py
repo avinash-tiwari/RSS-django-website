@@ -13,8 +13,11 @@ urlpatterns = [
     path('add/', views.addSubs, name='add'),#new subscriptions addition page
     path('reader/<path:l>/', views.ReaderModeView, name='reader'),#reader mode url it will give the article url
     path('save/<path:l>/<path:n>', views.SaveArticleView, name='save'),#save page url
+    path('read/<path:l>/<path:n>', views.MarkAsReadView, name='read'),#mark the article as read
     path('savepage/', views.SavePageView, name='savepage'),#list all the saved pages
+    path('readarticles/', views.ReadPageView, name='readarticles'),#list all the saved pages
     path('delete/<int:pk>', views.SubsDeleteView.as_view(), name='delete'),#delete subscriptions
     path('remove/<path:l>', views.SaveRemove, name='remove_save'),#remove the saved article
+    path('remove_read/<path:l>', views.SaveRemove, name='remove_read'),#remove the read article
     
 ]

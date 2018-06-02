@@ -33,6 +33,7 @@
                                         <a href="{%url 'reader' l%}" target="_blank" class='card-text'>{{t}}</a>
                                         <p class="card-text">{{l}}</p>
                                         <a href="{%url 'save' l t%}" class="btn btn-success card-link">Save</a>
+                                        <a href="{%url 'read' l t%}" class="btn btn-warning card-link" id="{{l}}^{{t}}">Mark As Read</a>
                                     </div>
                                 </div>
                            {%endfor%}
@@ -111,4 +112,30 @@
         </div>
         
     {%endif%}
+    <script>
+        $(function(){
+            $('.btn-warning').click(function(e){
+                e.preventDefault();
+                var lk=e.target.id.split('^');
+                /*$.ajax({
+                    url:'/read/'+lk[0]+lk[1],
+                    success:function(data){
+                        if (data=='success')
+                            alert('successfully saved');
+                        else{
+                            alert('there is some error');
+                        }    
+                    }
+                })*/
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function (data) {
+                    if (this.readyState == 4 && this.status == 200) {
+                        alert(data);
+                    }
+                };
+                xhttp.open("GET", "/read/"+lk[0]+"/"+lk[1], true);
+                xhttp.send();
+            });
+        });
+    </script>
 {%endblock%}

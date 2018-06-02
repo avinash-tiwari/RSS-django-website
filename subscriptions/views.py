@@ -1,10 +1,11 @@
 import bs4,requests
+from django.http import JsonResponse
 from django.shortcuts import render,redirect
 from django.views.generic import TemplateView
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import CreateView,ListView,DeleteView
 from django.urls import reverse_lazy
-from .models import Websites,Feedback,SaveArticles
+from .models import Websites,Feedback,SaveArticles,ReadArticles
 from .forms import SubForm,FeedbackForm
 # Create your views here.
 
@@ -14,7 +15,6 @@ def HomePageView(request):
         return render(request,'home.html',{'msg':f})
     else:
         subs = Websites.objects.filter(app_user=str(request.user.username))
-            # subs = Websites.objects.order_by('web_name')
         title = []
         ti = []
         link = []
@@ -136,6 +136,16 @@ def SaveArticleView(request,l,n):
     b=SaveArticles.objects.create(app_user=str(request.user.username),article_link=l,article_title=n)
     return render(request,'saveconfirm.html')
 
+def MarkAsReadView(request, l, n):
+    b=ReadArticles.objects.create(app_user=str(request.user.username),article_link=l,article_title=n)
+    data={'status':'success'}
+    print('saved successfully')
+    return JsonResponse(data)
+
+def ReadPageView(request):
+    b=ReadArticles.objects.filter(app_user=str(request.user.username))
+    return render(request,'read.html',{'read':b})    
+
 def SavePageView(request):
     b=SaveArticles.objects.filter(app_user=str(request.user.username))
     return render(request,'save.html',{'saved':b})    
@@ -143,3 +153,7 @@ def SavePageView(request):
 def SaveRemove(request,l):
     b=SaveArticles.objects.filter(article_link=l).delete()
     return render(request,'removeConfirm.html')
+
+def SaveRemove(request,l):
+    b=ReadArticles.objects.filter(article_link=l).delete()
+    return render(request,'remove_read.html')
