@@ -40,8 +40,10 @@ INSTALLED_APPS = [
 
     # third party app
     'crispy_forms',
+    'rest_framework',
     # custom app
     'subscriptions',
+    'API',
 ]
 
 MIDDLEWARE = [
