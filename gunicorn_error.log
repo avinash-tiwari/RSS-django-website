@@ -1,0 +1,41 @@
+[2019-02-03 09:31:29 +0000] [6080] [INFO] Starting gunicorn 19.9.0
+[2019-02-03 09:31:29 +0000] [6080] [INFO] Listening at: http://0.0.0.0:8000 (6080)
+[2019-02-03 09:31:29 +0000] [6080] [INFO] Using worker: sync
+[2019-02-03 09:31:29 +0000] [6083] [INFO] Booting worker with pid: 6083
+[2019-02-03 09:39:15 +0000] [6080] [INFO] Handling signal: term
+[2019-02-03 09:39:15 +0000] [6083] [INFO] Worker exiting (pid: 6083)
+[2019-02-03 09:39:15 +0000] [6080] [INFO] Shutting down: Master
+[2019-02-03 09:40:38 +0000] [6463] [INFO] Starting gunicorn 19.9.0
+[2019-02-03 09:40:38 +0000] [6463] [INFO] Listening at: http://0.0.0.0:8000 (6463)
+[2019-02-03 09:40:38 +0000] [6463] [INFO] Using worker: sync
+[2019-02-03 09:40:38 +0000] [6466] [INFO] Booting worker with pid: 6466
+[2019-02-03 09:40:39 +0000] [6470] [INFO] Starting gunicorn 19.9.0
+[2019-02-03 09:40:41 +0000] [6475] [INFO] Starting gunicorn 19.9.0
+[2019-02-03 09:40:46 +0000] [6481] [INFO] Starting gunicorn 19.9.0
+[2019-02-03 09:41:13 +0000] [6463] [INFO] Handling signal: term
+[2019-02-03 09:41:13 +0000] [6466] [INFO] Worker exiting (pid: 6466)
+[2019-02-03 09:41:13 +0000] [6463] [INFO] Shutting down: Master
+[2019-02-03 09:41:43 +0000] [6525] [INFO] Starting gunicorn 19.9.0
+[2019-02-03 09:41:43 +0000] [6525] [INFO] Listening at: http://0.0.0.0:8000 (6525)
+[2019-02-03 09:41:43 +0000] [6525] [INFO] Using worker: sync
+[2019-02-03 09:41:43 +0000] [6528] [INFO] Booting worker with pid: 6528
+[2019-02-03 09:41:44 +0000] [6532] [INFO] Starting gunicorn 19.9.0
+[2019-02-03 09:41:47 +0000] [6538] [INFO] Starting gunicorn 19.9.0
+[2019-02-03 09:41:50 +0000] [6543] [INFO] Starting gunicorn 19.9.0
+[2019-02-03 09:43:29 +0000] [6525] [INFO] Handling signal: term
+[2019-02-03 09:43:29 +0000] [6528] [INFO] Worker exiting (pid: 6528)
+[2019-02-03 09:43:29 +0000] [6525] [INFO] Shutting down: Master
+[2019-02-03 09:43:46 +0000] [6658] [INFO] Starting gunicorn 19.9.0
+[2019-02-03 09:43:46 +0000] [6658] [INFO] Listening at: http://0.0.0.0:8000 (6658)
+[2019-02-03 09:43:46 +0000] [6658] [INFO] Using worker: sync
+[2019-02-03 09:43:46 +0000] [6661] [INFO] Booting worker with pid: 6661
+[2019-02-03 09:44:10 +0000] [6658] [INFO] Handling signal: term
+[2019-02-03 09:44:10 +0000] [6661] [INFO] Worker exiting (pid: 6661)
+[2019-02-03 09:44:10 +0000] [6658] [INFO] Shutting down: Master
+[2019-02-03 09:44:41 +0000] [6701] [INFO] Starting gunicorn 19.9.0
+[2019-02-03 09:44:41 +0000] [6701] [INFO] Listening at: http://0.0.0.0:8000 (6701)
+[2019-02-03 09:44:41 +0000] [6701] [INFO] Using worker: sync
+[2019-02-03 09:44:41 +0000] [6704] [INFO] Booting worker with pid: 6704
+[2019-02-03 09:44:54 +0000] [6701] [INFO] Handling signal: term
+[2019-02-03 09:44:54 +0000] [6704] [INFO] Worker exiting (pid: 6704)
+[2019-02-03 09:44:54 +0000] [6701] [INFO] Shutting down: Master
